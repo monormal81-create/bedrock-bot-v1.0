@@ -1,0 +1,1 @@
+# bedrock-bot-v1.0
