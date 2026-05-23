@@ -5,7 +5,7 @@ bot.py — بوت تيليغرام لتوليد مودات Minecraft Bedrock
 
 import os
 import logging
-import google.generativeai as genai
+from google import genai
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
@@ -58,7 +58,7 @@ model = genai.GenerativeModel(
 
 7. رتّب الملفات: أولاً BP ثم RP.
 
-8. في النهاية أضف ق��م "📋 طريقة التثبيت:" بخطوات واضحة.
+8. في النهاية أضف قسم "📋 طريقة التثبيت:" بخطوات واضحة.
 
 الملفات الأساسية لأي Add-on:
 - BP/manifest.json (إلزامي)
