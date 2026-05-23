@@ -23,7 +23,7 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 TELEGRAM_TOKEN = os.environ["hidencloud"]
-GROQ_API_KEY = os.environ["GROQ_API_KEY"]
+GROQ_API_KEY = os.environ["Facebook"]
 
 client = Groq(api_key=GROQ_API_KEY)
 
