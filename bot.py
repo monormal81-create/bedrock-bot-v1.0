@@ -23,8 +23,8 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-TELEGRAM_TOKEN = os.environ["8628021629:AAG6v73PWkzPd-wUr1G7LIO9WdCXF-QWa6k"]
-GEMINI_KEY = os.environ["AIzaSyCQP2jaIHG5FnoOsTdxop3BTqR0PSk0iIE"]
+TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+GEMINI_KEY = os.environ["GEMINI_API_KEY"]
 
 client = genai.Client(api_key=GEMINI_KEY)
 
