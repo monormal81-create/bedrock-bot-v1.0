@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 
 # ── مفاتيح API ────────────────────────────────────────
 TELEGRAM_TOKEN = "8729332673:AAE3My-MPVUKpqLuC_0-2iMJxyTev8JGlGU"
-GEMINI_KEY     = os.environ["GEMINI_API_KEY"]
+GEMINI_KEY     = "AIzaSyCQP2jaIHG5FnoOsTdxop3BTqR0PSk0iIE"
 
 genai.configure(api_key=GEMINI_KEY)
 model = genai.GenerativeModel(
