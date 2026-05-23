@@ -1,12 +1,11 @@
 """
 bot.py - بوت تيليغرام لتوليد مودات Minecraft Bedrock
-يستخدم Google Gemini API (مجاني 100%)
+يستخدم Groq API
 """
 
 import os
 import logging
-from google import genai
-from google.genai import types
+from groq import Groq
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
@@ -24,9 +23,9 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 TELEGRAM_TOKEN = os.environ["hidencloud"]
-GEMINI_KEY = os.environ["GEMINI_API_KEY"]
+GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 
-client = genai.Client(api_key=GEMINI_KEY)
+client = Groq(api_key=GROQ_API_KEY)
 
 SYSTEM_PROMPT = """انت ذكاء اصطناعي متخصص حصريا في توليد Minecraft Bedrock Edition Add-ons.
 عندما يصف المستخدم مود، تولد الملفات الكاملة الجاهزة للاستخدام.
@@ -94,21 +93,20 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     try:
         history = user_histories[user_id].copy()
-        history.append({"role": "user", "parts": [{"text": user_msg}]})
+        history.append({"role": "user", "content": user_msg})
 
-        response = client.models.generate_content(
-            model="gemini-2.0-flash-lite",
-            contents=history,
-            config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-                max_output_tokens=4000,
-            )
+        response = client.chat.completions.create(
+            model="mixtral-8x7b-32768",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+            ] + history,
+            max_tokens=4000,
         )
 
-        ai_text = response.text
+        ai_text = response.choices[0].message.content
 
-        user_histories[user_id].append({"role": "user", "parts": [{"text": user_msg}]})
-        user_histories[user_id].append({"role": "model", "parts": [{"text": ai_text}]})
+        user_histories[user_id].append({"role": "user", "content": user_msg})
+        user_histories[user_id].append({"role": "assistant", "content": ai_text})
 
         await status_msg.edit_text("يبني ملف mcpack...")
 
