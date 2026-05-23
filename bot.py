@@ -24,7 +24,7 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # ── مفاتيح API ────────────────────────────────────────
-TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_TOKEN = "8729332673:AAE3My-MPVUKpqLuC_0-2iMJxyTev8JGlGU"
 GEMINI_KEY     = os.environ["GEMINI_API_KEY"]
 
 genai.configure(api_key=GEMINI_KEY)
@@ -120,7 +120,7 @@ HELP_TEXT = """📖 *دليل الاستخدام*
 • Upcoming Creator Features ✓"""
 
 
-# ═════════════════════════��════════════════════════════
+# ═══════════════════════════════════════════════════════
 #  Handlers
 # ══════════════════════════════════════════════════════
 
