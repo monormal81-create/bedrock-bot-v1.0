@@ -24,8 +24,8 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # ── مفاتيح API ────────────────────────────────────────
-TELEGRAM_TOKEN = os.environ["8729332673:AAE3My-MPVUKpqLuC_0-2iMJxyTev8JGlGU"]
-GEMINI_KEY     = os.environ["AIzaSyCQP2jaIHG5FnoOsTdxop3BTqR0PSk0iIE"]
+TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+GEMINI_KEY     = os.environ["GEMINI_API_KEY"]
 
 genai.configure(api_key=GEMINI_KEY)
 model = genai.GenerativeModel(
@@ -58,7 +58,7 @@ model = genai.GenerativeModel(
 
 7. رتّب الملفات: أولاً BP ثم RP.
 
-8. في النهاية أضف قسم "📋 طريقة التثبيت:" بخطوات واضحة.
+8. في النهاية أضف ق��م "📋 طريقة التثبيت:" بخطوات واضحة.
 
 الملفات الأساسية لأي Add-on:
 - BP/manifest.json (إلزامي)
@@ -120,7 +120,7 @@ HELP_TEXT = """📖 *دليل الاستخدام*
 • Upcoming Creator Features ✓"""
 
 
-# ══════════════════════════════════════════════════════
+# ═════════════════════════��════════════════════════════
 #  Handlers
 # ══════════════════════════════════════════════════════
 
