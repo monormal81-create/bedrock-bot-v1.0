@@ -39,7 +39,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         messages.append({"role": "user", "content": msg})
 
         response = client.chat.completions.create(
-            model="mistralai/mistral-7b-instruct:free",
+            model="google/gemma-3-4b-it:free",
             messages=messages,
             max_tokens=4000
         )
