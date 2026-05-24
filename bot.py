@@ -9,7 +9,7 @@ log = logging.getLogger(__name__)
 
 TELEGRAM_TOKEN = os.environ["hidencloud"]
 client = OpenAI(
-    api_key=os.environ["Facebook"],
+    api_key=os.environ["zada"],
     base_url="https://openrouter.ai/api/v1"
 )
 
