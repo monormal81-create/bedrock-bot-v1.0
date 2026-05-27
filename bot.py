@@ -18,7 +18,7 @@ from validator.validator import validate_pack
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
-TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_TOKEN = os.environ["hidencloud"]
 
 (
     S_MOD_TYPE,
