@@ -1,5 +1,10 @@
 import copy
+import json
+import uuid
 import templates as T
+
+def gen_uuid():
+    return str(uuid.uuid4())
 
 def load_template(name):
     mapping = {
