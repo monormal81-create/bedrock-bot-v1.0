@@ -183,6 +183,9 @@ def validate_pack(files):
     else:
         result.add_pass("RP/manifest.json موجود")
     for path, content in files.items():
+        if isinstance(content, bytes):
+            result.add_pass(f"Texture PNG: {path}")
+            continue
         if content is None:
             result.add_warning(path, "Texture غير مضمنة — أضفها يدوياً")
             continue
@@ -195,8 +198,10 @@ def validate_pack(files):
             validate_item(path, content, result)
         elif "BP/entities/" in path:
             validate_entity(path, content, result)
-        elif "BP/recipes/" in path or "loot_tables" in path:
+        elif "BP/recipes/" in path:
             validate_recipe(path, content, result)
+        elif "loot_tables" in path:
+            result.add_pass(f"loot_table موجود: {path}")
         elif "RP/entity/" in path:
             if "minecraft:client_entity" not in content:
                 result.add_error(path, "minecraft:client_entity مفقود")
