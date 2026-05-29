@@ -7,8 +7,9 @@ VALID_FORMAT_VERSIONS_ENTITY = ["1.19.0", "1.18.0", "1.17.0"]
 VALID_FORMAT_VERSIONS_MANIFEST = [2, "2"]
 
 UUID_PATTERN = re.compile(
-    r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$',
+    r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
     re.IGNORECASE
+)
 )
 
 class ValidationError:
