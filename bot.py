@@ -469,8 +469,6 @@ async def cb_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         files = {}
         if mod_type == "item":
             files = build_item(data)
-    data["pack_name"]
-            )
             if d.get("has_recipe"):
                 files.update(build_recipe(d))
         elif mod_type == "food":
