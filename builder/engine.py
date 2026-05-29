@@ -36,11 +36,10 @@ def fill(template, values):
     text = json.dumps(template, ensure_ascii=False)
     for key, val in values.items():
         if isinstance(val, (dict, list)):
-            placeholder = f'"{{{{{key}}}}}"'
-            replacement = json.dumps(val, ensure_ascii=False)
-            text = text.replace(placeholder, replacement)
+            ph = '"' + '{' + '{' + key + '}' + '}"'
+            text = text.replace(ph, json.dumps(val, ensure_ascii=False))
         else:
-            text = text.replace(f"{{{{{key}}}}}", str(val))
+            text = text.replace('{' + '{' + key + '}' + '}', str(val))
     return json.loads(text)
 
 def generate_uuids():
