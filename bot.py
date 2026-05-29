@@ -478,6 +478,12 @@ async def cb_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif mod_type == "entity":
             files = build_entity(d)
 
+        try:
+            textures = generate_all_textures(d)
+            files.update(textures)
+        except Exception as tex_err:
+            log.warning(f"Texture: {tex_err}")
+
         validation = validate_pack(files)
         if not validation.is_valid:
             await query.edit_message_text(
