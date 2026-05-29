@@ -513,15 +513,17 @@ async def cb_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return ConversationHandler.END
 
 def _build_mcpack(files, name):
-    safe_name = ''.join(c if c.isalnum() or c in '_-' else '_' for c in name)[:30] or "addon"
+    safe = ''.join(c if c.isalnum() or c in '_-' else '_' for c in name)[:30] or "addon"
     tmp = tempfile.mkdtemp()
-    out = os.path.join(tmp, f"{safe_name}.mcpack")
-    with zipfile.ZipFile(out,"w",zipfile.ZIP_DEFLATED) as zf:
+    out = os.path.join(tmp, f"{safe}.mcpack")
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
         for path, content in files.items():
-            if content is None:
+            if isinstance(content, bytes):
+                zf.writestr(path, content)
+            elif content is None:
                 zf.writestr(path, b'')
-                continue
-            zf.writestr(path, json.dumps(content,indent=2,ensure_ascii=False).encode("utf-8"))
+            else:
+                zf.writestr(path, json.dumps(content, indent=2, ensure_ascii=False).encode("utf-8"))
     return out
 
 def main():
