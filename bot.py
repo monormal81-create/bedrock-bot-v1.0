@@ -14,7 +14,7 @@ from telegram.ext import (
 )
 from builder.engine import build_item, build_armor, build_entity, build_recipe
 from validator.validator import validate_pack
-
+from pixel_art.generator import generate_all_textures
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
