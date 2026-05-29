@@ -468,7 +468,7 @@ async def cb_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         files = {}
         if mod_type == "item":
-            project = create_project_structure(
+            files = build_item(data)
     data["pack_name"]
             )
             if d.get("has_recipe"):
