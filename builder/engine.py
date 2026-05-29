@@ -1,6 +1,9 @@
-import copy
 import json
 import uuid
+import os
+import copy
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import templates as T
 
 def gen_uuid():
