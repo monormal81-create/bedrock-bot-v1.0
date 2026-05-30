@@ -39,7 +39,7 @@ TELEGRAM_TOKEN = os.environ["hidencloud"]
     S_ENTITY_TYPE, S_ENTITY_NAME, S_ENTITY_HEALTH, S_ENTITY_DAMAGE,
     S_ENTITY_SPEED, S_ENTITY_COLOR, S_ENTITY_DROPS, S_ENTITY_NAMESPACE,
     S_CONFIRM
-) = range(29)
+) = range(26)
 
 # تخزين بيانات المستخدم
 user_data_store: dict[int, dict] = {}
