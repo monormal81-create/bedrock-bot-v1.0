@@ -26,7 +26,7 @@ from db_manager import save_mod, get_user_mods, get_mod_by_id, delete_mod, get_m
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
-TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_TOKEN = os.environ["hidencloud"]
 
 # ── حالات المحادثة ─────────────────────────────────────
 (
@@ -39,7 +39,7 @@ TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
     S_ENTITY_TYPE, S_ENTITY_NAME, S_ENTITY_HEALTH, S_ENTITY_DAMAGE,
     S_ENTITY_SPEED, S_ENTITY_COLOR, S_ENTITY_DROPS, S_ENTITY_NAMESPACE,
     S_CONFIRM
-) = range(26)
+) = range(29)
 
 # تخزين بيانات المستخدم
 user_data_store: dict[int, dict] = {}
