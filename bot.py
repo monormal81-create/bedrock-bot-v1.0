@@ -25,7 +25,7 @@ from bundle_manager import merge_packs, get_bundle_summary
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
-TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_TOKEN = os.environ["hidencloud"]
 
 # ── حالات المحادثة ─────────────────────────────────────
 (
