@@ -28,7 +28,7 @@ log = logging.getLogger(__name__)
 TELEGRAM_TOKEN = os.environ["hidencloud"]
 
 # ── حالات المحادثة ─────────────────────────────────────    
-    (
+(
     S_MOD_TYPE,
     S_ITEM_TYPE, S_ITEM_NAME, S_ITEM_DAMAGE, S_ITEM_DURABILITY,
     S_ITEM_EFFECTS, S_ITEM_RECIPE_Q, S_ITEM_RECIPE_TYPE,
