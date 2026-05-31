@@ -882,8 +882,12 @@ async def cb_confirm(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await query.edit_message_text("تم الإلغاء. أرسل /start للبدء من جديد.")
         return ConversationHandler.END
 
+    d = user_data_store[uid]
+
     if query.data == "confirm_preview":
         return await _show_preview_message(query, uid, d)
+
+    return await _build_and_send(query, uid, d)
 
     d = user_data_store[uid]
     return await _build_and_send(query, uid, d)
