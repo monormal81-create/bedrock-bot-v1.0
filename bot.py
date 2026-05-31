@@ -210,16 +210,19 @@ async def cmd_cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
 #  BUNDLE MODE HANDLERS
 # ════════════════════════════════════════════════════════
 
-
 async def cb_show_preview(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """يعرض معاينة الصورة قبل البناء"""
     query = update.callback_query
     await query.answer()
     uid = query.from_user.id
     d = user_data_store[uid]
 
-    if query.data == "preview_change_color":
-        uid = query.from_user.id
+    if query.data == "preview_approve":
+        return await _build_and_send(query, uid, d)
+
+    elif query.data == "preview_skip":
+        return await _build_and_send(query, uid, d)
+
+    elif query.data == "preview_change_color":
         await query.edit_message_text(
             "اختر لوناً جديداً:",
             reply_markup=InlineKeyboardMarkup([
@@ -235,19 +238,10 @@ async def cb_show_preview(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return S_PREVIEW
 
-    elif query.data == "preview_approve":
-        # وافق — ابنِ المود
-        return await _build_and_send(query, uid, d)
-
-    elif query.data == "preview_skip":
-        # بدون معاينة — ابنِ مباشرة
-        return await _build_and_send(query, uid, d)
-
     elif query.data.startswith("pvc_"):
         color = query.data.replace("pvc_", "")
         user_data_store[uid]["color1"] = color
         d = user_data_store[uid]
-        # أعد عرض المعاينة باللون الجديد
         return await _show_preview_message(query, uid, d)
 
     return S_PREVIEW
