@@ -219,10 +219,19 @@ async def cb_show_preview(update: Update, context: ContextTypes.DEFAULT_TYPE):
     d = user_data_store[uid]
 
     if query.data == "preview_change_color":
-        # غيّر اللون — ارجع لاختيار اللون
+        uid = query.from_user.id
         await query.edit_message_text(
             "اختر لوناً جديداً:",
-            reply_markup=kb_color()
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("🔴 أحمر", callback_data="pvc_red"),
+                 InlineKeyboardButton("🔵 أزرق", callback_data="pvc_blue")],
+                [InlineKeyboardButton("🟢 أخضر", callback_data="pvc_green"),
+                 InlineKeyboardButton("⚫ أسود", callback_data="pvc_black")],
+                [InlineKeyboardButton("🟣 بنفسجي", callback_data="pvc_purple"),
+                 InlineKeyboardButton("🟠 برتقالي", callback_data="pvc_orange")],
+                [InlineKeyboardButton("🟡 أصفر", callback_data="pvc_yellow"),
+                 InlineKeyboardButton("⚪ أبيض", callback_data="pvc_white")],
+            ])
         )
         return S_PREVIEW
 
@@ -234,9 +243,8 @@ async def cb_show_preview(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # بدون معاينة — ابنِ مباشرة
         return await _build_and_send(query, uid, d)
 
-    elif query.data.startswith("col_"):
-        # تغيير اللون من شاشة المعاينة
-        color = query.data.replace("col_", "")
+    elif query.data.startswith("pvc_"):
+        color = query.data.replace("pvc_", "")
         user_data_store[uid]["color1"] = color
         d = user_data_store[uid]
         # أعد عرض المعاينة باللون الجديد
@@ -1064,7 +1072,7 @@ def main():
             S_ENTITY_SPEED: [CallbackQueryHandler(cb_entity_speed, pattern="^spd_")],
             S_ENTITY_COLOR: [CallbackQueryHandler(cb_entity_color, pattern="^col_")],
             S_CONFIRM: [CallbackQueryHandler(cb_confirm, pattern="^confirm_")],
-            S_PREVIEW: [CallbackQueryHandler(cb_show_preview, pattern="^preview_|^col_")],
+            S_PREVIEW: [CallbackQueryHandler(cb_show_preview, pattern="^preview_|^pvc_")],
             S_BUNDLE_MODE: [CallbackQueryHandler(cb_bundle_mode, pattern="^mode_")],
             S_BUNDLE_ADD: [CallbackQueryHandler(cb_bundle_add, pattern="^badd_|^bundle_")],
             S_BUNDLE_CONFIRM: [CallbackQueryHandler(cb_bundle_confirm, pattern="^bundle_")],
